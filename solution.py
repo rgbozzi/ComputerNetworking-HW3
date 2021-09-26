@@ -12,7 +12,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Fill in start
     clientSocket = socket(AF_INET, SOCK_STREAM)
-    clientSocket.connect((smtp_client))
+    clientSocket.connect((port=1025, mailserver='127.0.0.1'))
     # Fill in end
 
     recv = clientSocket.recv(1024).decode()
@@ -30,7 +30,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send MAIL FROM command and print server response.
     # Fill in start
-    mailFromCommand = 'MAIL FROM: <alice@crepes.fr>\r\n'
+    mailFromCommand = 'MAIL FROM: <rg4061@nyu.edu>\r\n'
     clientSocket.send(mailFromCommand.encode())
     recv2 = clientSocket.recv(1024).decode()
     # print(recv2)
@@ -38,7 +38,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send RCPT TO command and print server response.
     # Fill in start
-    rcptToCommand = 'RCPT TO: <bob@hamburger.edu>\r\n'
+    rcptToCommand = 'RCPT TO: <rgiacobozzi@gmail.com>\r\n'
     clientSocket.send(rcptToCommand.encode())
     recv3 = clientSocket.recv(1024).decode()
     # print(recv3)
@@ -54,16 +54,14 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send message data.
     # Fill in start
-    messageCommand = 'Do you like ketchup?\r\n'
-    clientSocket.send(messageCommand.encode())
+    clientSocket.send(msg.encode())
     recv5 = clientSocket.recv(1024).decode()
     # print(recv5)
     # Fill in end
 
     # Message ends with a single period.
     # Fill in start
-    endCommand = '.\r\n'
-    clientSocket.send(endCommand.encode())
+    clientSocket.send(endmsg.encode())
     recv6 = clientSocket.recv(1024).decode()
     # print(recv6)
     # Fill in end
